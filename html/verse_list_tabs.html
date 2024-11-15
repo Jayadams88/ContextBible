@@ -1,0 +1,172 @@
+<ul>
+  <li>
+    <a href="#verse-list-tabs-1">-------------</a>
+    <span class='close-tab-button'><i class='fas fa-times'></i></span>
+  </li>
+</ul>
+
+<div id="verse-list-tabs-1" class="verse-list-container"><div class="verse-list-grid-container">
+
+  <div class="verse-list-menu">
+    <div class="verse-list-menu-line">
+      <div class="fg-button book-select-button ui-state-default ui-corner-all">
+        <i class="fas fa-book-open"></i>
+        <div class="book-select-value" i18n="menu.book"></div>
+        <i class="fas fa-caret-down"></i>
+      </div>
+
+      <div class="fg-button tag-select-button ui-state-default ui-corner-all">
+        <i class="fas fa-tags"></i>
+        <div class="tag-select-label" i18n="menu.tags"></div>
+        <i class="fas fa-caret-down"></i>
+      </div>
+
+      <div class="fg-button module-search-button ui-state-default ui-corner-all">
+        <i class="fas fa-search"></i>
+        <div class="module-search-label" i18n="menu.search"></div>
+        <i class="fas fa-caret-down"></i>
+      </div>
+
+      <div class="fg-button verse-context-menu-button ui-state-default ui-corner-all" i18n="[title]menu.verse-context-actions">
+        <i class="fas fa-toolbox"></i>
+        <i class="fas fa-caret-down"></i>
+      </div>
+
+      <div class="fg-button display-options-button ui-state-default ui-corner-all" i18n="[title]menu.options">
+        <i class="fas fa-cog"></i>
+      </div>
+
+      <div class="fg-button copy-button ui-state-default ui-corner-all" i18n="[title]bible-browser.copy">
+        <i class="fas fa-copy"></i>
+      </div>
+
+      <div class="fg-button text-size-settings-button ui-state-default ui-corner-all" i18n="[title]menu.text-size">
+        <i class="fas fa-text-height"></i>
+      </div>
+
+      <div class="text-size-menu verse-selection-menu" style="display: none;">
+        <div class="verse-list-menu-line">
+          <div class="fg-button text-size-decrease ui-state-default ui-corner-all" i18n="[title]menu.text-size-decrease">
+            <i class="fas fa-font"></i><i class="fas fa-minus fa-xs"></i>
+          </div>
+          <div class="fg-button text-size-reset ui-state-default ui-corner-all" i18n="[title]menu.text-size-reset">
+            <i class="fas fa-font"></i>
+          </div>
+          <div class="fg-button text-size-increase ui-state-default ui-corner-all" i18n="[title]menu.text-size-increase">
+            <i class="fas fa-font"></i><i class="fas fa-plus fa-xs"></i>
+          </div>
+        </div>
+      </div>
+    </div> <!-- verse-list-menu-line -->
+
+    <div class="verse-list-menu-line">
+      <div class="app-info-button fg-button ui-corner-all ui-state-default ui-state-disabled" i18n="[title]menu.show-module-info">
+        <i class="fas fa-info"></i>
+      </div>
+
+      <div class="export-docx-button fg-button ui-corner-all ui-state-default ui-state-disabled" i18n="[title]menu.export">
+        <i class="fa fa-file-export"></i>
+      </div>
+    </div><!-- verse-list-menu-line -->
+
+    <div id="bible-select-title-line" class="verse-list-menu-line">
+      <div class="bible-select-block">
+        <select name="bible-select" class="bible-select">
+        </select>
+      </div>
+
+      <!-- Only visible on mobile version -->
+      <div class="current-tab-title-label">
+      </div>
+
+      <div id="mobile-loader" class="loader text-loader hidden">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div> <!-- verse-list-menu-line -->
+
+    <div id="last-verse-list-menu-line" class="verse-list-menu-line">
+      <div class="selection-box">
+        <span class="bold" i18n="bible-browser.selection"></span> <div class="selected-verses"></div>
+      </div>
+
+      <div id="desktop-loader" class="loader text-loader hidden">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div> <!-- verse-list-menu-line -->
+
+  </div> <!-- verse-list-menu -->
+
+  <div class="navigation-pane navigation-pane-chapters scrollable">
+  </div>
+
+  <div class="verse-list-frame scrollable">
+    <div class="verse-list-header verse-list-content">
+    </div>
+
+    <div class="verse-list-loading-indicator">
+      <div style="float: left;" class="verse-list-loading-indicator-text loading-indicator-text"></div>
+
+      <div class="loader">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
+
+    <div style='display: flex; flex-direction: row;'>
+      <div class='search-progress-bar progress-bar' style="margin-left: 2em; margin-right: 2em; width: 70%;">
+        <div class='progress-label'></div>
+      </div>
+  
+      <div class="cancel-module-search-button-container" style="display: none;">
+        <button class="cancel-module-search-button fg-button ui-corner-all ui-state-default"  i18n="general.cancel"></button>
+      </div>
+    </div>
+
+    <div class="temporary-help">
+    </div>
+
+    <div class="reference-verse verse-list-content">
+    </div>
+    
+    <div class='verse-statistics-chart-container'>
+      <canvas class="verse-statistics-chart">
+      </canvas>
+    </div>
+
+    <div class="tag-distribution-matrix-wrapper scrollable"
+         style="width: 100%; overflow-y: hidden; overflow-x: auto; display: none;">
+      <tag-distribution-matrix></tag-distribution-matrix>
+    </div>
+
+    <div class="verse-list verse-list-content">
+      <div class="help-text">
+      </div>
+    </div>
+  </div> <!-- verse-list-frame -->
+
+  <div class="tab-search">
+    <div class="tab-search-form">
+      <input class="tab-search-input" type="text" />
+      <div class="tab-search-occurances" class="tab-search-occurances"></div>
+      <span class="tab-search-previous tab-search-nav">&#x25B2;</span>
+      <span class="tab-search-next tab-search-nav">&#x25BC;</span>
+    </div>
+
+    <div class="tab-search-options">
+      <select class="tab-search-type" style="margin-right: 1em;">
+        <option value="phrase" i18n="search-menu.exact-phrase"></option>
+        <option value="multiWord" i18n="search-menu.multi-word"></option>
+      </select>
+      <label>
+        <input type="checkbox" class="tab-search-is-case-sensitive">
+        <span i18n="search-menu.case-sensitive"></span>
+      </label>
+    </div>
+  </div>
+
+</div></div> <!-- verse-list-container -->

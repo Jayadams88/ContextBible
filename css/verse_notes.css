@@ -1,0 +1,179 @@
+/* This file is part of Ezra Bible App.
+
+   Copyright (C) 2019 - 2024 Ezra Bible App Development Team <contact@ezrabibleapp.net>
+
+   Ezra Bible App is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 2 of the License, or
+   (at your option) any later version.
+
+   Ezra Bible App is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Ezra Bible App. See the file LICENSE.
+   If not, see <http://www.gnu.org/licenses/>. */
+
+div.CodeMirror {
+  font: caption;
+  background-color: #ecf3f7;
+  border-radius: 4px;
+}
+
+.Android div.CodeMirror {
+  height: 200px !important;
+}
+
+.verse-notes {
+  padding: 1em 1em 0.2em;
+  min-height: 3em !important;
+  margin-bottom: 0.5em;
+  display: none;
+  resize: vertical;
+
+  /* YELLOW */
+  /*border: 1px solid #FFF500;
+  background-color: #FFFF88; */
+
+  border-radius: var(--border-radius);
+
+  /* BLUEISH */
+  background-color: #DEEDF7;
+  border: 1px solid #AED0EA;
+
+  position: relative;
+}
+
+.verse-notes-text img {
+  margin: 0.5em;
+  border: 1px solid grey;
+}
+
+.verse-notes:not(.book-notes) {
+  margin-left: 1em;
+  width: 27%;
+}
+
+.verse-list-without-tags .verse-notes:not(.book-notes),
+.verse-list:not(.verse-list-tags-column) .verse-notes:not(.book-notes) {
+  width: 45%;
+}
+
+.verse-notes.visible {
+  display: block;
+}
+
+.verse-list-with-notes .book-notes {
+  margin: 1em 0.6em 0.5em 0.7em;
+  box-sizing: border-box;
+  width: calc(100% - 1.8em);
+}
+
+.verse-list-with-notes:not(.verse-list-scroll-notes) .verse-notes-text.edited {
+  min-height: 18em;
+}
+
+.Android .verse-list-with-notes:not(.verse-list-scroll-notes) .verse-notes-text.edited {
+  min-height: 12em;
+}
+
+.verse-list-scroll-notes .verse-notes-text {
+  max-height: 300px; /* CodeMirror default height */
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.Android .verse-list-scroll-notes .verse-notes-text {
+  max-height: 200px;
+}
+
+.verse-list-scroll-notes .verse-notes:not(.verse-notes-empty) .verse-notes-text:not(.edited) {
+  overflow-y: auto;
+}
+
+.verse-notes-text {
+  line-height: 130%;
+}
+
+.verse-notes-text>*{
+  padding-right: 1em;
+}
+
+.verse-notes-status-bar {
+  margin-top: 0.5em;
+  color: grey;
+  font-size: 90%;
+  width: 100%;
+  display: flex;
+  padding-left: 3px;
+}
+
+.verse-notes-buttons {
+  display: none;
+}
+
+.verse-notes-buttons i.fas {
+  margin-right: 0.4em;
+}
+
+.verse-notes-timestamp {
+  margin-left: auto;
+  margin-right: 1em;
+}
+
+.darkmode--activated .verse-notes:not(.verse-notes-empty) {
+  background: #000000 url(jquery-ui/dark-hive/images/ui-bg_loop_25_000000_21x21.png) 50% 50% repeat
+}
+
+.verse-notes-empty {
+  min-height: 1.9em;
+  border: var(--area-border);
+  background-color: inherit;
+  padding-top: 1.1em;
+  padding-bottom: 1.1em;
+  text-align: center;
+  font-weight: bold;
+  color: #A0A0A0;
+}
+
+.verse-notes h1,
+.verse-notes h2,
+.verse-notes h3 {
+  text-decoration: none;
+  font-weight: bold;
+  padding-top: 0.5em;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+.verse-notes h1, .cm-header-1 {
+  font-size: 1.4em;
+}
+
+.verse-notes h2, .cm-header-2 {
+  font-size: 1.3em;
+}
+
+.verse-notes h3, .cm-header-3 {
+  font-size: 1.1em;
+}
+
+.verse-notes ul, .verse-notes ol {
+  padding-inline-start: 20px;
+}
+
+.verse-notes p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.verse-list:not(.verse-list-with-notes) .verse-reference .active i.fas {
+  -webkit-text-stroke: 1px #f2f5f7; /* body background-color */
+  text-shadow: 1px 1px 0, -1px -1px 0, 1px -1px 0, -1px 1px 0;
+}
+
+.darkmode--activated .verse-list .verse-reference .active i.fas {
+  -webkit-text-stroke-color: #1e1e1e;
+}

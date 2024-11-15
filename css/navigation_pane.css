@@ -1,0 +1,149 @@
+/* This file is part of Ezra Bible App.
+
+   Copyright (C) 2019 - 2024 Ezra Bible App Development Team <contact@ezrabibleapp.net>
+
+   Ezra Bible App is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 2 of the License, or
+   (at your option) any later version.
+
+   Ezra Bible App is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Ezra Bible App. See the file LICENSE.
+   If not, see <http://www.gnu.org/licenses/>. */
+
+.navigation-pane {
+  grid-area: navigation;
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 1em;
+  padding-bottom: 0.5em;
+  overflow-y: scroll;
+  border: var(--area-border);
+  border-right: none;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  user-select: none;
+  display: none;
+}
+
+.navigation-pane-chapters {
+  width: 3.2em;
+}
+
+.navigation-pane-chapters.with-tag-indicators {
+  width: 5.2em;
+}
+
+.navigation-pane-headers {
+  min-width: 15em;
+}
+
+.navigation-pane-headers.with-tag-indicators {
+  min-width: 17em;
+}
+
+.navigation-pane-books {
+  min-width: 10em;
+}
+
+.navigation-link {
+  display: block;
+  margin-bottom: 0.5em;
+  text-align: center;
+  border: 1px solid transparent;
+  float: left;
+}
+
+.navigation-pane:not(.navigation-pane-books) .navigation-link:not(.header-link) {
+  width: 2em;
+}
+
+.navigation-link, .header-link:not(.header-link-first) {
+  clear: both;
+}
+
+.header-link {
+  display: none;
+  width: 10.5em;
+  text-align: left;
+  border: 1px solid transparent;
+  float: left;
+  clear: none;
+}
+
+.navigation-pane-headers .header-link {
+  display: block;
+}
+
+.header-link-first {
+  margin-left: 3px;
+}
+
+.navigation-pane-books .navigation-link {
+  text-align: left;
+}
+
+a.navigation-link:link,
+a.navigation-link:hover,
+a.navigation-link:visited,
+a.navigation-link:focus {
+  font-style: normal;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 0.3em;
+  color: #808080;
+}
+
+.darkmode--activated a.navigation-link {
+  /* border: 1px solid black; */
+  color: #cccccc;
+}
+
+a.hl-nav-element:link,
+a.navigation-link:hover,
+a.navigation-link:focus,
+a.header-link:hover,
+a.header-link.focus {
+  border: var(--highlight-border);
+  border-radius: 4px;
+  background-color: var(--highlight-bg-color);
+  color: var(--highlight-color);
+}
+
+a.hl-search-result:link {
+  border: 1px solid orange;
+  border-radius: 4px;
+}
+
+.darkmode--activated a.hl-search-result:link {
+  border: 1px solid forestgreen;
+}
+
+.nav-pane-header {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  padding-left: 0.2em;
+}
+
+.navigation-pane .tag-indicator {
+  float: left;
+  padding-top: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.3em;
+  color: var(--accent-color);
+  opacity: 1;
+  display: none;
+}
+
+.navigation-pane.with-tag-indicators .tag-indicator {
+  display: block;
+}
+
+.header-link-box {
+  float: left;
+}

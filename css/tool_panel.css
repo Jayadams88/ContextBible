@@ -1,0 +1,544 @@
+/* This file is part of Ezra Bible App.
+
+   Copyright (C) 2019 - 2024 Ezra Bible App Development Team <contact@ezrabibleapp.net>
+
+   Ezra Bible App is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 2 of the License, or
+   (at your option) any later version.
+
+   Ezra Bible App is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Ezra Bible App. See the file LICENSE.
+   If not, see <http://www.gnu.org/licenses/>. */
+
+#tool-panel {
+  grid-area: tool-panel;
+  height: 100%;
+  min-width: 20em;
+  padding: 0 1.3em 0 0;
+  overflow: hidden;
+}
+
+/* LANDSCAPE */
+@media screen and (min-aspect-ratio: 13/10) {
+  .Android #tool-panel #tag-list-stats {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  #tool-panel {
+    min-width: 27em;
+  }
+
+  .Android #tool-panel #tag-list-stats {
+    display: inline-block;
+  }
+}
+
+
+/* PORTRAIT */
+@media screen and (max-aspect-ratio: 13/10) {
+  #tool-panel {
+    height: 13em !important;
+    width: 100% !important;
+    min-width: auto;
+    padding: 0.5em 0 0 0.2em;
+  }
+
+  .fullscreen #app-container #tool-panel {
+    height: 18em !important;
+  }
+
+  @media (min-height: 800px) {
+    #tool-panel {
+      height: 18em !important;
+    }
+
+    .fullscreen #app-container #tool-panel {
+      height: 24.5em !important;
+    }
+  }
+
+  @media (min-height: 1000px) {
+    #tool-panel {
+      height: 24.5em !important;
+    }
+
+    .fullscreen #app-container #tool-panel {
+      height: 28em !important;
+    }
+  }
+
+  @media (min-height: 1200px) {
+    #tool-panel {
+      height: 28em !important;
+    }
+
+    .fullscreen #app-container #tool-panel {
+      height: 33em !important;
+    }
+  }
+}
+
+/* LANDSCAPE */
+@media screen and (min-aspect-ratio: 13/10) {
+  #tool-panel {
+    height: 100% !important;
+  }
+
+  .Android #tool-panel {
+    width: 22em;
+  }
+}
+
+#tool-panel.hidden {
+  display: none;
+}
+
+#tool-panel > section {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: none;
+}
+#tool-panel > section.active {
+  display: block;
+}
+
+#tool-panel.ui-resizable {
+  top: 0 !important; /* override jQuery UI resizable */
+  left: 0 !important;
+}
+
+#tool-panel .ui-resizable-n {
+  border-bottom: 1px solid var(--border-color);
+  top: 0;
+  left: 10px;
+  z-index: 10 !important;
+  width: calc(100% - 20px);
+  display: none;
+}
+
+#tool-panel .ui-resizable-e {
+  border-left: 1px dashed var(--border-color);
+  right: 0;
+  top: 10px;
+  z-index: 10 !important;
+  height: calc(100% - 20px);
+  cursor: col-resize !important;
+}
+
+.Windows #tool-panel .ui-resizable-e {
+  cursor: ew-resize !important;
+}
+
+#tool-panel .ui-resizable-e:hover, #tool-panel .ui-resizable-e:active {
+  border-left: 3px solid var(--highlight-border-color);
+  transition-delay: 0.5s;
+}
+
+/* PORTRAIT */
+@media screen and (max-aspect-ratio: 13/10) {
+  #tool-panel .ui-resizable-n {
+    display: block;
+  }
+  
+  #tool-panel .ui-resizable-e {
+    display: none !important;
+  }  
+}
+
+#detail-panel {
+  grid-area: detail-panel;
+  height: 30vh;
+  padding: 0 0.5em;
+}
+#detail-panel:empty, #detail-panel.hidden {
+  display: none;
+}
+
+#detail-panel > :first-child {
+  margin-top: 1em;
+}
+#detail-panel > * {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+#tag-panel ol li {
+  /*clear: both;*/
+  margin-bottom: 0.3em;
+}
+
+.ui-tabs .ui-tabs-panel {
+  padding: 0.5em 0.2em 0;
+}
+
+/* PORTRAIT */
+@media screen and (max-aspect-ratio: 13/10) {
+  .ui-tabs .ui-tabs-panel {
+    padding-left: 0;
+  }
+}
+
+.accordion-panel {
+  padding: 0.2em;
+  user-select: none;
+}
+
+#tags-content {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.ui-accordion .ui-accordion-content {
+  margin-top: unset !important;
+}
+
+.accordion-panel .ui-accordion-header {
+  height: 2.2em;
+}
+
+.accordion-panel .ui-icon-triangle-1-s {
+  display: none;
+}
+
+.accordion-panel .ui-accordion-header a {
+  padding-left: 1em;
+}
+
+#dictionary-panel {
+  user-select: none;
+}
+
+.panel-wrapper {
+  clear: both;
+  height: calc(100% - 2.6em) !important;  /* overwrite default jqueryUI Accordion */
+  box-sizing: border-box;
+  padding: 0.5em 0.5em !important;
+  margin: 0.1em 0 0 0;
+}
+
+.panel-wrapper .fg-button {
+  font-size: 0.9em !important;
+}
+
+#tag-statistics-panel-wrapper {
+  padding: 0 !important;
+  height: calc(100% - 2.9em);
+}
+
+.strongs-short-info {
+  font-weight: bold;
+}
+
+#dictionary-panel-content .strongs-definition {
+  margin-top: 0;
+  color: black;
+}
+
+.darkmode--activated #dictionary-panel-content .strongs-definition {
+  color: #cccccc;
+}
+
+#dictionary-panel-lock {
+  font-style: italic;
+  color: grey;
+  display: none;
+}
+
+#dictionary-panel-header {
+  float: left;
+}
+
+#dictionary-panel-help li {
+  margin-bottom: 0.5em;
+}
+
+#dictionary-panel-wrapper a:link,
+#new-standard-tag-dialog a:link,
+#new-standard-tag-dialog a:visited {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+.darkmode--activated #dictionary-panel-wrapper a:link,
+.darkmode--activated #new-standard-tag-dialog a:link,
+.darkmode--activated #new-standard-tag-dialog a:visited {
+  color: var(--accent-color-darkmode);
+}
+
+#dictionary-panel a:hover,
+#new-standard-tag-dialog a:hover {
+  text-decoration: underline;
+}
+
+table.strongs-refs {
+  border-collapse: collapse;
+  margin-top: 0.5em;
+}
+
+table.strongs-refs td {
+  padding: 0.3em;
+  padding-right: 1.5em;
+}
+
+tr.td-underline td {
+  border-bottom: var(--area-border);
+}
+
+#tag-list-filter-button {
+  font-size: 0.8em;
+  padding-left: 1em;
+}
+
+#tag-list-filter-button-active {
+  display: none;
+  font-weight: bold;
+  color: black;
+  float: left;
+}
+
+#tags-search-input {
+  margin: 0;
+  margin-right: -1em;
+  float: right;
+}
+
+#tag-filter-menu {
+  display: none;
+  font-size: 0.9em;
+  padding: 0.1em;
+  border: 2px solid #AED0EA;
+  z-index: 100;
+  border-radius: var(--border-radius);
+  box-shadow: 5px 5px 5px #A0A0A0;
+  position: fixed;
+  background-color: white;
+}
+
+.darkmode--activated #tag-filter-menu {
+  background: #000000 url(jquery-ui/dark-hive/images/ui-bg_loop_25_000000_21x21.png) 50% 50% repeat;
+  color: #cccccc;
+}
+
+#tag-filter-menu input {
+  margin: 0.5em;
+}
+
+#tags-content-global {
+  margin: 0.1em 0 0 0;
+  padding: 0.5em;
+  user-select: none;
+  height: calc(100% - 5.5em) !important;
+  box-sizing: border-box;
+}
+
+#tags-content-global loading-indicator {
+  display: flex;
+  justify-content: center;
+  margin-top: 5em;
+}
+
+.checkbox-tag {
+  display: flex;
+  min-height: 2em;
+  content-visibility: auto;
+  padding: 0.1em;
+  padding-left: 0.5em;  
+  align-items: center;
+}
+
+.checkbox-tag *:not(.cb-input-label-stats) {
+  content-visibility: auto;
+}
+
+.Android .checkbox-tag {
+  height: 2.5em;
+  padding-top: 0.8em;
+}
+
+.checkbox-tag:nth-child(odd), .checkbox-tag.odd {
+  background: var(--background-color-darker);
+}
+
+.checkbox-tag.even {
+  background: inherit;
+}
+
+.checkbox-tag a {
+  text-decoration: none;
+}
+
+input.tag-cb {
+  display: none;
+}
+
+.tag-button {
+  margin-right: 1em !important;
+}
+
+.cb-label-tag-assignment-count,
+.meta-tag-number-of-tags-container {
+  margin-left: 0.5em;
+  color: #808080;
+}
+
+.cb-input-label-stats {
+  display: inline-block;
+  max-width: 80%;
+}
+
+.Android .cb-input-label-stats {
+  max-width: 70%;
+}
+
+.cb-label {
+  cursor: pointer;
+}
+
+.cb-label-assigned {
+  font-weight: bold;
+}
+
+.darkmode--activated .cb-label-assigned {
+  color: wheat;
+}
+
+.button-small {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-content: center;
+  margin-right: 0.5em;
+  font-size: 0.7em;
+  cursor: pointer;
+  color: var(--button-color);
+  border: 1px solid #8e8e8e;
+  border-radius: calc(var(--border-radius) - 2px);
+  background-color: var(--background-color);
+}
+
+.darkmode--activated .button-small {
+  color: var(--button-color-dark);
+}
+
+.button-small.active, 
+.button-small.button-small:hover:not(.disabled):not(.no-hl) {
+  color: white;
+  background-color: var(--accent-color);
+  border-color: var(--highlight-border-color);
+}
+
+.button-small.disabled {
+  color: var(--disabled-button-color);
+  border-color: var(--disabled-button-color);
+  background-color: transparent;
+  opacity: 0.8;
+}
+
+.Android .button-small {
+  width: 24px;
+  height: 24px;
+  font-size: 1em;
+}
+
+.Android #tag-group-list-content .button-small,
+.Android #tags-content-global .button-small {
+  margin-right: 1em;
+}
+
+.edit-button {
+  margin-left: auto;
+}
+
+.ezra-dialog {
+  font: caption;
+  font-size: 0.9em;
+  line-height: 150%;
+  border: 2px solid #aed0ea;
+  box-shadow: 0px 0px 20px #888888;
+  user-select: none;
+}
+
+.Linux .ezra-dialog {
+  font-family: "Liberation Sans", sans-serif;
+}
+
+.Windows .ezra-dialog {
+  font-family: "Segoe UI", sans-serif;
+}
+
+.OSX .ezra-dialog {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
+}
+
+.Android .ezra-dialog {
+  border-top: unset !important;
+  border-left: unset !important;
+  border-right: unset !important;
+  border-radius: unset !important;
+}
+
+#new-standard-tag-title-input,
+#rename-tag-title-input {
+  width: 26em;
+}
+
+.is-global {
+  display: none;
+}
+
+table.tag-statistics {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+}
+
+table.tag-statistics tr:nth-child(even) {
+  background: var(--background-color-darker);
+}
+
+table.tag-statistics td, table.tag-statistics th {
+  padding: 0.5em;
+}
+
+table.tag-statistics a:link,
+table.tag-statistics a:visited {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+.darkmode--activated table.tag-statistics a:link,
+.darkmode--activated table.tag-statistics a:visited {
+  color: var(--accent-color-darkmode);
+}
+
+table.tag-statistics a:hover {
+  text-decoration: underline;
+}
+
+.dict-installed, .dict-not-installed {
+  padding: 0.1em;
+  border-radius: 3px;
+}
+
+.dict-installed {
+  background-color: lightgreen;
+}
+
+.dict-not-installed {
+  background-color: lightcoral;
+}
+
+.darkmode--activated .dict-installed, .darkmode--activated .dict-not-installed {
+  color: black;
+}

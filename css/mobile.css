@@ -1,0 +1,738 @@
+/* This file is part of Ezra Bible App.
+
+   Copyright (C) 2019 - 2024 Ezra Bible App Development Team <contact@ezrabibleapp.net>
+
+   Ezra Bible App is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 2 of the License, or
+   (at your option) any later version.
+
+   Ezra Bible App is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Ezra Bible App. See the file LICENSE.
+   If not, see <http://www.gnu.org/licenses/>. */
+
+/*
+Necessary styles for smaller screen devices,
+Librem 5/Pinephone etc.
+*/
+@media screen and (max-width: 600px) {
+  #app-container {
+    padding: 0.5em !important;
+    padding-bottom: 1em !important;
+  }
+
+  /*Make dialogs not go out of screen*/
+  .ui-dialog {
+    max-width: 100vw;
+  }
+
+  .fullscreen:not(.keyboard-shown) .ui-dialog {
+    height: 100vh !important;
+    max-height: unset !important;
+  }
+
+  .ui-dialog-buttonpane {
+    margin: 0 !important;
+    padding: unset !important;
+    padding-right: 0.5em !important;
+    padding-bottom: 0.5em !important;
+  }
+
+  body.keyboard-shown .ui-dialog-buttonpane {
+    margin-top: 0.5em !important;
+  }
+
+  .text-loader {
+    margin-right: unset;
+  }
+
+  .fullscreen-button {
+    top: 0.8em;
+    right: 1.3em;
+    padding: 0.4em 0.5em;
+  }
+
+  .mobile-scrollable::-webkit-scrollbar {
+    width: 0.5em;
+    border-width: 1px;
+    border-radius: var(--border-radius);
+  }
+
+  .mobile-scrollable::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius);
+  }
+
+  .mobile-scrollable::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border: 1px solid slategrey;
+    border-radius: var(--border-radius);
+  }
+
+  .export-docx-button {
+    display: none !important;
+  }
+
+  .ezra-dialog {
+    box-shadow: unset !important;
+  }
+
+  .verse-list-without-user-data-indicators .verse-reference {
+    width: unset;
+    margin-left: unset;
+  }
+
+  .verse-reference {
+    padding-right: 0.2em;
+  }
+
+  .verse-reference-content {
+    width: unset;
+    min-width: 2.5em;
+  }
+
+  #app-container.fullscreen .verse-reference-content {
+    text-decoration: unset !important;
+  }
+
+  .verse-content {
+    padding: 0.2em;
+  }
+
+  .verse-box {
+    flex-wrap: wrap;
+  }
+
+  .verse-notes-buttons > a {
+    padding: 8px 0;
+    display: inline-block;
+  }
+}
+
+/* Long smartphone */
+@media screen and (max-width: 450px) and (max-height: 950px) {
+  .ui-dialog-content {
+    height: 85vh !important;
+  }
+
+  #tag-group-assignment-section, #edit-tag-dialog tag-group-assignment-list {
+    height: 80% !important;
+  }
+
+  #info-popup.ui-dialog-content {
+    height: 91vh !important;
+  }
+
+  .book-list-column li {
+    line-height: 2.2em !important;
+  }
+
+  #book-selection-menu-chapter-list {
+    max-height: unset !important;
+  }
+}
+
+/* Long smartphone - keyboard visible */
+@media screen and (max-width: 450px) and (max-height: 620px) {
+  body.keyboard-shown .ui-dialog {
+    height: 97vh !important;
+  }
+
+  body.keyboard-shown .ui-dialog-content {
+    height: 75vh !important;
+  }
+
+  body.keyboard-shown #tag-group-assignment-section,
+  body.keyboard-shown #tag-list-content {
+    height: 74% !important;
+  }
+
+  body.keyboard-shown #edit-tag-dialog tag-group-assignment-list {
+    height: 79% !important;
+  }
+
+  body.keyboard-shown #add-tag-group-dialog,
+  body.keyboard-shown #rename-tag-group-dialog {
+    height: 73vh !important;
+  }
+}
+
+/* Short smartphone */
+@media screen and (max-width: 450px) and (max-height: 740px) {
+  body:not(.keyboard-shown) .ui-dialog-content {
+    height: 79vh !important;
+  }
+
+  body:not(.keyboard-shown).fullscreen .ui-dialog-content {
+    height: 82vh !important;
+  }
+
+  body:not(.keyboard-shown) #tag-group-assignment-section,
+  body:not(.keyboard-shown) #edit-tag-dialog tag-group-assignment-list {
+    height: 80% !important;
+  }
+
+  body:not(.keyboard-shown) #info-popup.ui-dialog-content {
+    height: 91vh !important;
+  }
+
+  body:not(.keyboard-shown) .book-list-column li {
+    line-height: 1.9em !important;
+  }
+}
+
+/* Short smartphone - keyboard visible */
+@media screen and (max-width: 450px) and (max-height: 380px) {
+  body.keyboard-shown .ui-dialog {
+    height: 96vh !important;
+  }
+
+  body.keyboard-shown .ui-dialog-content {
+    height: 60vh !important;
+  }
+
+  body.keyboard-shown #tag-group-assignment-section,
+  body.keyboard-shown #tag-list-content {
+    height: 60% !important;
+  }
+
+  body.keyboard-shown #edit-tag-dialog tag-group-assignment-list {
+    height: 68% !important;
+  }
+
+  body.keyboard-shown #add-tag-group-dialog, .keyboard-shown #rename-tag-group-dialog {
+    height: 57vh !important;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  #tag-selection-taglist-global, #tag-selection-taglist-overlay {
+    height: 200px;
+  }
+}
+
+@media screen and (max-height: 450px) {
+  #app-container {
+    padding: 0.5em !important;
+    padding-bottom: 0em !important;
+  }
+}
+
+@media screen and (max-width: 450px), (max-height: 450px) {
+  #app-container.fullscreen .verse-list {
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+  }
+
+  #book-selection-menu {
+    height: 100vh;
+    width: 97%;
+    top: 0 !important;
+    left: 0 !important;
+    padding-left: 1em;
+  }
+
+  .fullscreen #book-selection-menu {
+    height: 100%;
+  }
+
+  .book-list-column li.book-selected a:link,
+  .book-list-column li.book-selected a:visited,
+  .book-list-column li.book-selected a:focus {
+    border: unset !important;
+    border-radius: unset !important;
+    background: unset !important;
+    font-weight: bold;
+  }
+
+  .verse-selection-menu:not(.text-size-menu) {
+    border-radius: unset !important;
+    box-shadow: unset !important;
+    border: unset !important;
+  }
+
+  .text-size-menu .fg-button {
+    width: 0.8rem;
+    height: 1.5rem;
+  }
+
+  .Android #book-selection-menu-chapter-list #chapter-list-chapters {
+    max-inline-size: 24em !important;
+  }
+
+  .verse-list-menu .fg-button {
+    margin-right: 0.4em;
+    padding: 1px 10px;
+  }
+
+  .verse-list-menu .fa-caret-down {
+    display: none;
+  }
+
+  .verse-list-menu .fg-button > div {
+    display: none;
+  }
+
+  #last-verse-list-menu-line {
+    display: none;
+  }
+
+  .selection-box {
+    display: none !important;
+  }
+
+  #bible-select-title-line {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+  }
+
+  #mobile-loader {
+    display: unset;
+  }
+
+  #desktop-loader {
+    display: none !important;
+  }
+
+  .verse-list-loading-indicator {
+    margin-top: 100px !important;
+  }
+
+  .current-tab-title-label {
+    text-align: center;
+    font-weight: bold;
+    display: unset !important;
+  }
+
+  #bookLoadingModeOption-button {
+    width: unset !important;
+    margin-left: 1em !important;
+    max-width: 11em;
+  }
+
+  .options-group {
+    max-width: 48vw;
+  }
+
+  .switch-box {
+    margin-bottom: 0.7em !important;
+  }
+
+  .ui-selectmenu {
+    height: unset !important;
+  }
+
+  .locale-switch-container .ui-selectmenu {
+    margin-left: 0;
+    display: block;
+    max-width: 8em !important;
+  }
+
+  .locale-switch-container .ui-selectmenu-menu-dropdown {
+    height: 250px !important;
+  }
+
+  .locale-detect {
+    width: 1.5em !important;
+  }
+
+  .locale-detect i {
+    display: none;
+  }
+
+  .locale-detect i.fas+[i18n] {
+    margin-left: unset !important;
+  }
+
+  .chapter-nav {
+    font-size: unset !important;
+    text-align: center;
+  }
+
+  a.chapter-nav:link,
+  a.chapter-nav:visited {
+    margin: 1em;
+  }
+
+  .chapter-label-left {
+    margin-left: 0.5em;
+  }
+
+  .chapter-label-right {
+    margin-right: 0.5em;
+  }
+
+  #module-settings-assistant {
+    margin: 0;
+    padding: 0;
+    height: 85vh !important;
+  }
+
+  #module-settings-assistant > .container {
+    padding-top: unset !important;
+  }
+
+  .module-settings-assistant-init, #module-settings-assistant-add {
+    font-size: 0.85em !important;
+  }
+
+  .module-settings-assistant-init button {
+    height: unset !important;
+    padding: 0.4em 2em !important;
+  }
+
+  .module-settings-assistant-init > .module-assistant-type-buttons {
+    gap: 0.5em !important;
+    margin: 1em;
+  }
+
+  .module-settings-assistant-init > section {
+    padding: 0.4em 2em !important;
+  }
+
+  #module-settings-assistant .assistant-note {
+    display: none;
+  }
+
+  #module-info, #filtered-module-list .module-info-button {
+    display: none;
+  }
+
+  .wizard.vertical > .steps {
+    display: none;
+  }
+
+  .wizard.vertical > .content {
+    width: 100%;
+    margin: 0 !important;
+  }
+
+  .wizard.vertical > .actions {
+    padding-top: 0.7em !important;
+  }
+
+  #module-info {
+    display: none !important;
+  }
+
+  #module-settings-assistant-add .steps > ul > li > a {
+    margin: 0;
+    padding: 2px;
+    font-size: 10px;
+  }
+
+  #module-step-wrapper #module-list#module-list {
+    margin: 2px;
+    padding: 2px;
+  }
+
+  #book-selection-menu-book-list, #book-selection-menu-chapter-list {
+    padding: 0;
+    height: 100% !important;
+    overflow-y: auto;
+  }
+
+  .book-list-column {
+    padding-inline-start: 0px;
+    max-width: 90vw;
+  }
+
+  .book-list-column li {
+    padding: 0;
+    margin: 0;
+  }
+
+  #info-popup.ui-dialog-content {
+    padding: 0.2em !important;
+  }
+
+  #info-popup, #app-info-tabs .ui-tabs-nav li {
+    font-size: 0.9em !important;
+  }
+
+  #info-tabs.ui-tabs-panel {
+    padding-left: unset !important;
+  }
+
+  #info-popup table {
+    table-layout: fixed;
+  }
+
+  #info-popup table td {
+    max-width: 14em;
+    overflow-wrap: break-word;
+  }
+
+  #db-sync-box-content *:not(li) {
+    margin-bottom: 1em !important;
+  }
+
+  /* Hide keyboard shortcuts on mobile */
+  #app-info-tabs-3-nav, #app-info-tabs-3 {
+    display: none !important;
+  }
+
+  #app-info-tabs .ui-tabs-nav {
+    padding: 0 !important;
+  }
+
+  .ui-widget-header {
+    border: unset !important;
+  }
+
+  #verse-list-popup-verse-list {
+    height: unset !important;
+    overflow-y: unset !important;
+  }
+
+  #tag-selection-menu, #module-search-menu {
+    font-size: 0.8em !important;
+  }
+
+  #tag-selection-menu {
+    width: 94%;
+  }
+
+  #tool-panel {
+    font-size: 0.9em !important;
+  }
+
+  #tag-selection-menu {
+    top: 0 !important;
+    left: 0 !important;
+    height: 100% !important;
+  }
+
+  #tag-selection-taglist {
+    height: 55% !important;
+  }
+
+  body.keyboard-shown #tag-selection-taglist {
+    height: 40% !important;
+  }
+
+  #tag-selection-menu-tag-group-list {
+    height: calc(100% - 13em) !important;
+  }
+
+  .Android .tag-group, .Android .checkbox-tag {
+    padding-top: unset !important;
+  }
+
+  .Android .tag-group a {
+    max-width: 16em !important;
+  }
+
+  #tag-selection-taglist-global, #tag-selection-taglist-overlay {
+    height: 100% !important;
+  }
+
+  #tag-selection-summary {
+    margin-top: 1.5em !important;
+  }
+
+  #deselect-all-tags-button, #confirm-tag-selection-button {
+    padding: 0.5em !important;
+  }
+
+  /*search dropdown*/
+  #module-search-menu {
+    left: 0.7em !important;
+    width: 88vw;
+  }
+
+  .navigation-pane.navigation-pane-books {
+    min-width: 50px;
+    max-width: 30vw;
+    padding: 2px;
+  }
+
+  #new-standard-tag-title-input, #rename-tag-title-input, #tag-group-title-value, #rename-tag-group-title-input {
+    width: 15em !important;
+  }
+
+  #app-container.fullscreen-menu .fullscreen-button {
+    display: none;
+  }
+
+  /* Hide these options on mobile, because they do not make sense on a small screen! */
+  #showBookChapterNavigationOption,
+  #showHeaderNavigationOption,
+  #bookLoadingModeOption-button,
+  #showFootnotesOption,
+  #openVerseListsInNewTabOption,
+  #showTabSearchOption {
+    display: none;
+  }
+
+  .backButtonNavigation {
+    display: block !important;
+  }
+
+  #display-options-menu {/*Scrollable settings if there is not enough space vertically */
+    position: absolute !important;
+    top: 0 !important;
+    width: 100%;
+    height: 100vh;
+    max-height: unset !important;
+    overflow-y: auto;
+    border: unset !important;
+    border-radius: unset !important;
+    box-shadow: unset !important;
+    font-size: 0.85em;
+  }
+
+  .bible-select-block {
+    margin-right: unset;
+    min-width: unset !important;
+    font-size: 0.8em;
+  }
+
+  .bible-select-block .ui-selectmenu {
+    width: 110px !important;
+  }
+
+  .bible-select-block .ui-selectmenu-status {
+    padding-left: 0.6em;
+  }
+
+  #tag-list-stats {
+    display: none !important;
+  }
+
+  #tags-search-input {
+    margin-right: -1.5em !important;
+  }
+
+  #tags-content-global {
+    font-size: 0.9em;
+    height: calc(100% - 6.2em) !important;
+  }
+
+  #tags-content-global loading-indicator {
+    margin-top: 3em !important;
+  }
+
+  .Android .button-small:not(#new-standard-tag-button, .copy-button) {
+    font-size: 0.9em !important;
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  #new-standard-tag-title-input, #rename-tag-title-input {
+    width: 85% !important;
+  }
+
+  /*Make dialogs not go out of screen*/
+  .ui-dialog {
+    max-width: 99vw !important;
+    height: 100vh !important;
+  }
+
+  #new-standard-tag-dialog, #edit-tag-dialog {
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+  }
+
+  #add-tags-to-group-dialog {
+    padding-top: 1em !important;
+    padding-bottom: 0em !important;
+  }
+
+  /* Hide regular tabs navigation */
+  .ui-tabs-nav {
+    display: none;
+  }
+
+  #app-info-tabs .ui-tabs-nav {
+    display: unset;
+  }
+
+  .ui-tabs .ui-tabs-panel {
+    padding-top: 0em !important;
+  }
+
+  #only-currentbook-tagged-verses, #only-currentbook-tagged-verses-label, #current-book-tagged-verses-count {
+    font-size: 0.8em !important;
+  }
+
+  .Android .verse-list-scroll-notes .verse-notes-text {
+    max-height: 130px !important;
+  }
+
+  .update-repository-data-wrapper {
+    height: 5em !important;
+  }
+
+  .language-list {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  #open-verselist-in-new-tab-button {
+    display: none !important;
+  }
+
+  .fullscreen #app-container .verse-reference-content {
+    text-decoration: unset !important;
+    cursor: unset !important;
+  }
+
+  .fullscreen #app-container .verse-list {
+    padding-top: unset !important;
+    padding-bottom: unset !important;
+  }
+
+  #panel-switches {
+    justify-content: center !important;
+  }
+
+  #info-popup-module-select-button {
+    margin-top: 1em !important;
+  }
+}
+
+/* PORTRAIT */
+@media screen and (max-aspect-ratio: 13/10) and (max-width: 450px) {
+  #panel-switches {
+    padding-top: 0.3em;
+  }
+}
+
+/* LANDSCAPE */
+@media screen and (min-aspect-ratio: 13/10) and (max-height: 450px) {
+  #app-container {
+    height: 98vh !important;
+  }
+
+  #tag-selection-menu {
+    height: 96% !important;
+    width: 97% !important;
+  }
+
+  #tag-selection-taglist {
+    height: 36% !important;
+  }
+
+  .ui-dialog-content {
+    height: 65vh !important;
+  }
+
+  #tag-group-assignment-section, #edit-tag-dialog tag-group-assignment-list {
+    height: 68% !important;
+  }
+
+  #info-popup {
+    height: 85vh !important;
+  }
+
+  #display-options-menu.visible {
+    display: flex !important;
+  }
+}

@@ -1,0 +1,194 @@
+<div id="verse-list-popup">
+  <div id="verse-list-popup-loading-indicator">
+    <div style="float: left;" i18n="bible-browser.loading-tagged-verses"></div>
+
+    <div class="loader">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+  </div>
+  <div id="verse-list-popup-buttons" style="margin-top: 0.5em; margin-bottom: 0.5em;">
+    <button id="open-verselist-in-new-tab-button" class="fg-button ui-corner-all ui-state-default" i18n="bible-browser.open-verselist-in-new-tab" style="display: none;">
+    </button>
+  </div>
+  <div id="verse-list-popup-verse-list" class="verse-list verse-list-content scrollable" style="display: none;">
+  </div>
+</div>
+
+<div id="info-popup">
+  <div id="info-popup-content" style="height: 100%">
+  </div>
+</div>
+
+<div id="bible-sync-box">
+  <div id="bible-sync-box-content">
+  </div>
+</div>
+
+<div id="privacy-options-box"></div>
+
+<div id="new-release-info-box">
+  <div id="new-release-info-box-content">
+  </div>
+</div>
+
+<div id="strongs-box">
+  <div id="strongs-box-content">
+  </div>
+</div>
+
+<div id="config-typeface-box">
+  <div id="config-typeface-box-content" style="padding-top: 1em;">
+
+    <label for="font-family-select"
+           style="width: 12em; display: inline-block; position: relative; top: -0.3em; left: 1.2em;"
+           i18n="general.type-face.bible-text-font-family">
+    </label>
+    
+    <select is="select-option"
+            id="font-family-select"
+            settingsKey="bibleTextFontFamily"
+            width="20em">
+
+      <option value="sans-serif" label="general.type-face.sans-serif"></option>
+      <option value="serif" label="general.type-face.serif"></option>
+      <option id="custom-font-family-option" value="custom" label="general.type-face.custom"></option>
+
+    </select>
+
+    <br/>
+    <div id="system-font-select-box">
+      <label for="system-font-select"
+             style="width: 12em; display: inline-block; position: relative; top: -0.3em; left: 1.2em;"
+             i18n="general.type-face.custom-bible-text-font"> 
+      </label>
+
+      <select is="select-option"
+              id="system-font-select"
+              settingsKey="bibleTextSystemFont"
+              autoLoad="false"
+              autoSave="false"
+              width="20em"
+              disabled="disabled">
+      </select>
+    </div>
+
+    <div id="bible-font-sample-text"
+         style="height: 12em;
+                margin-left: 1em;
+                margin-right: 1em;
+                margin-top: 2em;
+                padding: 1em;
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 130%;">
+    </div>
+
+  </div>
+</div>
+
+<div id="db-sync-box">
+  <div id="db-sync-box-content">
+    <p i18n="[html]dropbox.dropbox-sync-explanation-part1"></p>
+    <p i18n="dropbox.dropbox-sync-explanation-part2" style="margin-bottom: 0;"></p>
+    <ul style="display: block !important; margin-top: 0;">
+      <li i18n="dropbox.dropbox-sync-explanation-part3a"></li>
+      <li i18n="dropbox.dropbox-sync-explanation-part3b"></li>
+      <li i18n="dropbox.dropbox-sync-explanation-part3c"></li>
+      <li i18n="dropbox.dropbox-sync-explanation-part3d"></li>
+      <li i18n="dropbox.dropbox-sync-explanation-part3e"></li>
+    </ul>
+    <p i18n="dropbox.dropbox-sync-explanation-part4"></p>
+
+    <div style="display: flex; flex-direction: row;">
+      <button id="link-dropbox-account"
+              style="width: fit-content; padding: 0.5em; margin-top: 0.5em;"
+              class="fg-button ui-corner-all ui-state-default"
+              i18n="dropbox.link-dropbox-account"></button>
+
+      <button id="reset-dropbox-account-link"
+              style="width: fit-content; padding: 0.5em; margin-left: 2em; margin-top: 0.5em;"
+              class="fg-button ui-corner-all ui-state-default"
+              i18n="dropbox.reset-dropbox-account-link"></button>
+    </div>
+   
+    <div style="margin-top: 1em;">
+      <span i18n="dropbox.dropbox-link-status"></span>
+      <span id="dropbox-link-status" i18n="dropbox.dropbox-link-status-not-linked"></span>
+    </div>
+
+    <div>
+      <label for="sync-dropbox-after-changes" i18n="dropbox.sync-after-changes"></label>
+      <input id="sync-dropbox-after-changes" type="checkbox"></input>
+    </div>
+
+    <div id="only-sync-on-wifi-option">
+      <label for="only-sync-on-wifi" i18n="dropbox.only-sync-on-wifi"></label>
+      <input id="only-sync-on-wifi" type="checkbox"></input><br/>
+    </div>
+  </div>
+</div>
+
+<div id="search-results-box">
+  <div class="verse-list-header verse-list-content">
+  </div>
+    
+  <div class='verse-statistics-chart-container'>
+    <canvas class="verse-statistics-chart">
+    </canvas>
+  </div>
+
+  <div style='display: flex; flex-direction: row;'>
+    <div class='search-progress-bar progress-bar' style="margin-top: 3em; margin-left: 2em; margin-right: 2em; width: 70%;">
+      <div class='progress-label'></div>
+    </div>
+
+    <div class="cancel-module-search-button-container" style="display: none; margin-top: 1.6em;">
+      <button class="cancel-module-search-button fg-button ui-corner-all ui-state-default"  i18n="general.cancel"></button>
+    </div>
+  </div>
+
+  <div id="search-results-box-content" class="verse-list"></div>
+</div>
+
+<div id="tag-filter-menu">
+  <input id="tag-filter-all-tags" type="radio" name="tag-filter" value="all" checked="checked"><label for="tag-filter-all-tags" i18n="tags.all-tags"></label></input><br/>
+  <input id="tag-filter-assigned-tags" type="radio" name="tag-filter" value="assigned"><label for="tag-filter-assigned-tags" i18n="tags.assigned-tags"></label></input>
+  <br id="tag-filter-menu-separator" />
+  <input id="tag-filter-unassigned-tags" type="radio" name="tag-filter" value="unassigned"><label for="tag-filter-unassigned-tags" i18n="tags.unassigned-tags"></label></input><br/>
+  <input id="tag-filter-used-tags" type="radio" name="tag-filter" value="recently-used"><label for="tag-filter-used-tags" i18n="tags.recently-used-tags"></label></input><br/>
+</div>
+
+<div class="fg-button fullscreen-button ui-state-default ui-corner-all" i18n="[title]menu.fullscreen">
+  <i class="fas fa-expand"></i>
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" id="icons">
+  <symbol xmlns="http://www.w3.org/2000/svg"  id="tag-icon" viewBox="0 0 512 512">
+    <g transform="translate(-25,0) scale(0.7)">
+      <!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/>
+    </g>  
+    <g transform="translate(220, 0) scale(0.6)">
+      <!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/>
+    </g>  
+  </symbol>
+
+  <symbol xmlns="http://www.w3.org/2000/svg"  id="tags-icon" viewBox="0 0 640 512">
+    <g transform="translate(64,0) scale(0.9)">
+      <!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.941 225.941L286.059 14.059A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v204.118a48 48 0 0 0 14.059 33.941l211.882 211.882c18.744 18.745 49.136 18.746 67.882 0l204.118-204.118c18.745-18.745 18.745-49.137 0-67.882zM112 160c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm513.941 133.823L421.823 497.941c-18.745 18.745-49.137 18.745-67.882 0l-.36-.36L527.64 323.522c16.999-16.999 26.36-39.6 26.36-63.64s-9.362-46.641-26.36-63.64L331.397 0h48.721a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882z"/>
+    </g>
+  </symbol>
+
+  <symbol xmlns="http://www.w3.org/2000/svg"  id="clipboard-icon" viewBox="0 0 384 512">
+    <g transform="scale(0.9)">
+      <!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"/>
+    </g>
+  </symbol>
+
+  <symbol xmlns="http://www.w3.org/2000/svg" id="note-icon" viewBox="0 0 512 512">
+    <g transform="scale(0.8)">
+      <!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 9.8 11.2 15.5 19.1 9.7L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64z"/>
+    </g>
+  </svg>
+</svg>

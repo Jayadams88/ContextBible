@@ -1,0 +1,2112 @@
+/* This file is part of Ezra Bible App.
+
+   Copyright (C) 2019 - 2024 Ezra Bible App Development Team <contact@ezrabibleapp.net>
+
+   Ezra Bible App is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 2 of the License, or
+   (at your option) any later version.
+
+   Ezra Bible App is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Ezra Bible App. See the file LICENSE.
+   If not, see <http://www.gnu.org/licenses/>. */
+
+:root {
+  --accent-color: #2779AA;
+  --accent-color-darkmode: #97d0ff;
+  --background-color: #f2f5f7;
+  --background-color-darker: #e6e9eb;
+  --widget-bg-color: #eeeeee;
+  --text-color: #362b36;
+  --text-color-red: firebrick;
+  --text-color-red-darkmode: salmon;
+
+  --highlight-object-color: #AFCDFF;
+  --highlight-object-color-dark: #00396a;
+  
+  --border-color: #dddddd;
+  --border-radius: 6px;
+  --area-border: 1px solid var(--border-color);
+
+  --highlight-bg-color: #e4f1fb;
+  --highlight-bg: var(--highlight-bg-color) url(images/ui-bg_glass_100_e4f1fb_1x400.png) 50% 50% repeat-x;
+  --highlight-border-color: #74b2e2;
+  --highlight-border: 1px solid var(--highlight-border-color);
+  --highlight-color: var(--accent-color);
+
+  --checkmark-success-color: LimeGreen;
+
+  --button-color: #777;
+  --button-color-dark: #aaa;
+  --disabled-button-color: #bbbbbb;
+}
+
+:root body.darkmode--activated {
+  --background-color: #1e1e1e;
+  --background-color-darker: #171717;
+  --widget-bg-color: #1e1e1e;
+  --text-color: #cccccc;
+
+  --border-color: #555555;
+
+  --highlight-bg-color: #003147;
+  --highlight-bg: var(--highlight-bg-color) url(jquery-ui/dark-hive/images/ui-bg_highlight-soft_33_003147_1x100.png) 50% 50% repeat-x;
+  --highlight-border-color: #0b93d5;
+  --highlight-color: var(--text-color);
+
+  --disabled-button-color: #555555;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.super { 
+  vertical-align: super;
+  font-size: 80%;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.not-shown {
+  display: none;
+}
+
+html,
+body {
+  margin: 0;
+  font: caption;
+  user-select: none;
+  font-size: 100.1%;
+  /* Do not show a scrollbar for the overall window.
+     Instead we use a scrollbar for individual components within the window. */
+  overflow: hidden;
+  touch-action: none;
+  background-color: var(--background-color);
+}
+
+.darkmode-layer {
+  background-color: var(--background-color) !important;
+  mix-blend-mode: unset !important;
+}
+
+.darkmode-background {
+  background: unset !important;
+}
+
+button {
+  font: caption;
+}
+
+.button {
+  font-size: 1em;
+  display: inline-block;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--border-color);
+  background-color: var(--background-color);
+  color: black;
+  padding: 0.5em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+}
+.darkmode--activated .button {
+  color: #aaa;
+}
+.button:hover:not(.disabled) {
+  color: white;
+  background-color: var(--accent-color);
+  border-color: var(--highlight-border-color);
+}
+.button.disabled {
+  color: var(--disabled-button-color);
+  border-color: var(--disabled-button-color);
+  background-color: transparent;
+  opacity: 0.8;
+}
+
+:focus {
+  outline: none;
+}
+
+form,
+input {
+  margin: 0;
+}
+
+h1 {
+  padding-top: 0.5em;
+  font-size: 1.3em;
+  margin-left: 0.5em;
+  clear: both;
+}
+
+h2 {
+  padding-top: 0.5em;
+  font-size: 1.2em;
+  margin-left: 0.5em;
+  clear: both;
+}
+
+h3 {
+  padding-top: 0;
+  font-size: 1.1em;
+  clear: both;
+}
+
+h2:nth-of-type(1) {
+  padding-top: 0;
+}
+
+.ezra-dialog h2 {
+  margin-left: inherit;
+}
+
+#main-content {
+  display: none;
+}
+
+#verse-list-tabs {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  margin-left: 0.2em;
+}
+
+#verse-list-tabs .ui-tabs-nav {
+  padding-bottom: 0.1em;
+  width: fit-content;
+  margin-right: 4.5em;
+}
+
+.fullscreen #app-container .ui-tabs-nav {
+  display: none;
+}
+
+.fullscreen #app-container .ui-tabs-panel {
+  padding: 0;
+}
+
+#verse-list-tabs ul li span {
+  padding: 0.5em 0.7em 0.5em 0;
+  display: inline-block;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
+  cursor: default;
+}
+
+.verse-list-container {
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.verse-list-grid-container {
+  display: grid;
+  grid-template-columns: minmax(0, auto) 1fr;
+  grid-template-rows: auto 1fr minmax(0, auto);
+  grid-template-areas: 
+      "menu menu"
+      "navigation verse-list"
+      "navigation tab-search";
+  height: 100%;
+  width: 100%;    
+}
+
+.verse-list-menu {
+  grid-area: menu;
+  margin-bottom: 0.2em;
+  border-radius: var(--border-radius);
+  user-select: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fullscreen #app-container .verse-list-menu {
+  display: none !important;
+}
+
+.verse-list-menu-line {
+  display: flex;
+  align-items: center;
+  padding-top: 0.2em;
+  justify-content: start;
+}
+
+.verse-list-menu-line:last-child {
+  flex-grow: 1;
+}
+
+.verse-list-frame {
+  grid-area: verse-list;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  /* This prevents a horizontal scrollbar on small screens  */
+  border: var(--area-border);
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  user-select: none;
+  padding-bottom: 1em;
+}
+
+.verse-list-frame.no-chapter-nav {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.fullscreen #app-container .verse-list-frame {
+  margin-right: 0.2em;
+}
+
+.verse-list-frame-no-chapter-nav {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.verse-list-frame.tab-search-active {
+  border-bottom-left-radius: unset;
+  border-bottom-right-radius: unset;
+}
+
+.verse-list-content,
+.reference-verse {
+  font: caption;
+  font-size: 1em;
+  line-height: 150%;
+  width: 100%;
+  /*height: 100%;         // Needed because of selectable scroll-bug
+  overflow-y: scroll;*/
+}
+
+.fullscreen #app-container .verse-list {
+  /* This is to ensure that there is enough space for the radial menu in fullscreen mode
+     when it is used for the first verse of the verse list.
+   */
+  padding-top: 4.8em;
+  padding-bottom: 3.5em;
+}
+
+.verse-list-content:not(.verse-list-with-section-titles) {
+  padding-top: 0.5em;
+}
+
+.verse-list-content .help-text {
+  margin: 1.5em;
+}
+
+.Android #check-new-releases-box {
+  display: none;
+}
+
+.Android #system-font-select-box {
+  display: none;
+}
+
+div.chapter-nav {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+a.chapter-nav.disabled {
+  color: lightgray !important;
+  cursor: unset;
+}
+
+.darkmode--activated a.chapter-nav.disabled {
+  color: gray !important;
+}
+
+a.chapter-nav:link,
+a.chapter-nav:visited {
+  text-decoration: none;
+  color: var(--accent-color);
+  margin: 1em;
+}
+
+.Android a.chapter-nav:link,
+.Android a.chapter-nav:visited {
+  text-decoration: underline;
+}
+
+.Android .ui-dialog-titlebar-close.ui-state-hover {
+  border: unset !important;
+}
+
+.Android .ui-dialog-titlebar-close.ui-state-active,
+.Android .ui-dialog-titlebar-close.ui-state-focus {
+  border: unset !important;
+  background: unset !important;
+  font-weight: unset !important;
+  color: unset !important;
+}
+
+.Android.darkmode--activated .close-dialog-icon {
+  color: unset !important;
+}
+
+a.chapter-nav:hover {
+  text-decoration: underline;
+}
+
+.darkmode--activated a.chapter-nav:link,
+.darkmode--activated a.chapter-nav:visited {
+  color: var(--accent-color-darkmode);
+}
+
+.verse-box {
+  display: flex;
+  margin: 0 0.5em 0.2em 0;
+}
+
+.assign-tag-button {
+  background-color: #F3F3F3;
+  font-size: 0.8em;
+  font-weight: bold;
+  cursor: pointer;
+  /*visibility: hidden;*/
+  width: 18px;
+  height: 18px;
+  float: right;
+  text-align: center;
+  color: black;
+}
+
+.verse-reference {
+  display: flex;
+  padding-top: 0.3em;
+  margin-left: 0.5em;
+  width: 8em; /* Needs to be bigger to support notes and x-refs, aligned with .verse-content */
+  /*height: 1.5em;*/
+  /* z-index: 100; */
+  /*padding-top: 0.1em;*/
+  color: #808080;
+  flex: 0 0;
+}
+
+.Android .verse-reference {
+  margin-left: unset !important;
+  flex-direction: column; /* This ensures that the verse reference and the notes/tags indicators are shown above each other */
+}
+
+.Android .verse-reference-content {
+  margin-bottom: 0.1em;
+  order: -1; /* Make sure that the verse reference itself comes first (compared to notes/tags indicators) */
+}
+
+.verse-list-content:not(.verse-list-tags-column).verse-list-with-notes .verse-reference {
+  height: 4em;
+}
+
+.darkmode--activated .verse-reference {
+  color: var(--text-color);
+}
+
+.verse-reference-content {
+  text-align: left;
+  margin-top: 0.15em;
+  margin-left: 0.8em;
+  width: 4em;
+  max-height: 1em;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullscreen #app-container .verse-reference-content {
+  text-decoration: underline gray;
+  cursor: pointer;
+}
+
+.verse-content {
+  padding: 0.2em;
+  flex: 1 1;  
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+}
+.verse-text-and-tags {
+  flex: 1 1;
+}
+
+.slim-verse-reference .verse-reference {
+  width: 5em;
+}
+
+.slim-verse-reference .verse-reference-content {
+  margin-left: 0;
+}
+
+.tag-box {
+  line-height: 150%;
+  max-width: 60ch;
+  /* padding: 0.1em; */
+}
+
+.verse-list-rtl .tag-box {
+  text-align: right;
+}
+
+.verse-list-tags-column .tag-box {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: 1em;
+  width: 30%;
+  flex: 0 0 auto;
+}
+
+.tag {
+  display: inline;
+  color: black;
+  font-weight: normal;
+  background-color: lightyellow;
+  border: 1px solid lightgray;
+  /*border: 1px solid #808080;*/
+  font-size: 0.85em;
+  padding: 0.1em;
+  margin-right: 0.4em;
+  line-height: 2em;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.darkmode--activated .tag {
+  border: 0px;
+  color: var(--text-color);
+  background-color: darkslategray;
+}
+
+.tag-highly-frequent {
+  font-weight: bold;
+}
+
+#verse-list-popup,
+#info-popup,
+#search-results-box,
+#db-sync-box,
+#config-typeface-box {
+  display: none;
+}
+
+#db-sync-box-content {
+  display: flex;
+  flex-direction: column;
+}
+
+#db-sync-box-content *:not(li) {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5em;
+}
+
+#db-sync-box-content label,
+#db-sync-box-content span {
+  width: 18em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border-radius: 4px;
+}
+
+#db-sync-box-content input {
+  margin-left: 0.5em;
+}
+
+#dropbox-link-status {
+  width: fit-content !important;
+  margin-left: 0.5em;
+  background-color: lightyellow;
+  border: 1px solid lightgray;
+  color: black;
+}
+
+#dropbox-link-status.success {
+  background-color: lightgreen;
+}
+
+#dropbox-link-status.failed {
+  background-color: lightsalmon;
+}
+
+#only-sync-on-wifi-option {
+  display: none !important;
+}
+
+.Android #only-sync-on-wifi-option {
+  display: flex !important;
+}
+
+#verse-list-popup-verse-list {
+  padding-right: 0.2em;
+  height: 350px;
+  width: unset !important;
+  margin-bottom: 0.5em;
+  overflow-y: scroll;
+  display: none;
+}
+
+#info-popup {
+  width: 600px;
+  height: 400px;
+  overflow: inherit;
+}
+
+#app-info-tabs {
+  height: calc(100% - 1em);
+}
+
+#app-info-tabs .ui-tabs-nav {
+  border-top: unset !important;
+  border-left: unset !important;
+  border-right: unset !important;
+}
+
+.verse-list-without-tags .tag-box,
+.ezra-dialog .tag-box {
+  display: none;
+}
+
+.verse-list-without-user-data-indicators .notes-info,
+.verse-list-without-user-data-indicators .tag-info {
+  display: none;
+}
+
+.verse-list-without-user-data-indicators .verse-reference-content {
+  margin-left: 0.8em;
+}
+
+.verse-list-without-user-data-indicators .verse-reference {
+  width: 5em;
+}
+
+.verse-list-tags-column .verse-text-and-tags {
+  display: flex;
+  flex-direction: row-reverse;
+  flex: 1 1;
+  justify-content: flex-end;
+}
+
+.verse-text {
+  padding: 0.05em;
+  position: relative;
+  line-height: 1.5em;
+  max-width: 60ch;
+  flex: 1 1;
+}
+
+.verse-text.ui-selected {
+  user-select: text;
+}
+
+.verse-list-rtl .verse-text {
+  direction: rtl;
+}
+
+.ezra-dialog .verse-text {
+  cursor: auto;
+}
+
+.bible-sync-dialog .ui-dialog-titlebar-close {
+  display: none;
+}
+
+.tab-search,
+.tab-search-type,
+.tab-search-type option,
+.tab-search-input,
+#search-type,
+#search-type option,
+#search-scope,
+#search-scope option,
+.ui-dialog #bible-sync-box,
+.ui-dialog #db-sync-box,
+.ui-dialog #new-release-info-box,
+.ui-widget:not(.ezra-dialog),
+.ui-widget:not(.ezra-dialog) .ui-widget,
+.ui-widget:not(.ezra-dialog) button,
+.fg-button,
+.ui-selectmenu-menu,
+#app-info-tabs .ui-tabs-nav,
+#module-search-menu,
+.selection-menu-footer,
+.options-header,
+#book-selection-menu,
+#tag-selection-menu,
+#display-options-menu,
+#verse-context-menu {
+  font-size: 0.9em;
+}
+
+.backButtonNavigation {
+  display: none;
+}
+
+#main-content,
+.ui-dialog .ui-dialog-content,
+.ezra-dialog,
+.ezra-dialog .ui-tabs {
+  user-select: none;
+  font-size: 1em;
+}
+
+.OSX .ui-dialog .ui-dialog-titlebar-close {
+  left: .3em;
+}
+
+.OSX .ui-dialog .ui-dialog-titlebar {
+  text-align: center;
+}
+
+.OSX .ui-dialog .ui-dialog-title {
+  float: none;
+}
+
+.ui-selected,
+.ui-selecting {
+  border: 0;
+  background: none;
+  background-color: var(--highlight-object-color);
+  border-radius: 4px;
+}
+
+.darkmode--activated .ui-selected,
+.darkmode--activated .ui-selecting {
+  background-color: var(--highlight-object-color-dark);
+}
+
+.ui-state-hover {
+  cursor: pointer;
+}
+
+#open-verselist-in-new-tab-button {
+  height: 2.2em;
+}
+
+.tag-info,
+.notes-info {
+  font-weight: bold;
+  margin-left: 0.5em;
+  margin-top: 0.3em;
+  color: #DDDDDD;
+  opacity: 0.8;
+  /*visibility: hidden;*/
+}
+
+.Android .notes-info {
+  font-size: 125%;
+}
+
+.Android .tag-info {
+  display: none; /* The tag info is not needed on mobile! */
+}
+
+.tag-info,
+.notes-info,
+.verse-reference-content {
+  text-align: center;
+}
+
+#search-results-box .tag-info,
+#search-results-box .notes-info {
+  display: none;
+}
+
+.darkmode--activated .tag-info,
+.darkmode--activated .notes-info {
+  color: #3a3a3a;
+}
+
+.verse-reference .visible,
+.darkmode--activated .verse-reference .visible {
+  color: var(--accent-color);
+  opacity: 1;
+  /*visibility: visible;*/
+}
+
+.verse-reference-id,
+.verse-bible-book,
+.verse-bible-book-short,
+.verse-part,
+.abs-verse-nr {
+  display: none;
+}
+
+#app-container {
+  position: relative;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  padding: 0.5em 1em 1em 0.5em;
+  grid-template-columns: auto minmax(0, auto) 1fr;
+  grid-template-rows: 1fr minmax(0, auto);
+  grid-template-areas: 
+    "panel-buttons tool-panel content"
+    "panel-buttons tool-panel detail-panel";
+}
+
+.webview-older #app-container {
+  grid-template-rows: minmax(55vh, 100vh) minmax(0, 23vh);
+}
+
+/* PORTRAIT */
+@media screen and (max-aspect-ratio: 13/10) {
+  #app-container {
+    grid-template-areas: 
+      "content"
+      "detail-panel"
+      "tool-panel"
+      "panel-buttons";
+
+    grid-template-columns: unset !important;
+  }
+
+  /* Force horizontal display of verse notes in Portrait mode */
+  .verse-list-without-tags .verse-notes:not(.book-notes),
+  .verse-list-content .verse-notes:not(.book-notes) {
+    width: 100% !important;
+    margin-top: 0.5em;
+    margin-left: unset !important;
+  }
+}
+
+.fullscreen #app-container {
+  padding: 0.2em;
+  padding-left: 0.4em;
+  padding-right: 0.5em;
+}
+
+panel-buttons {
+  grid-area: panel-buttons;
+}
+
+panel-buttons > * {
+  /* This has to be display: none initially, because otherwise
+     it shows up already when the permissions dialogue is shown on Android. */
+  display: none;     
+}
+
+main.content {
+  grid-area: content;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#app-container .ui-tabs-panel,
+#app-container .ui-widget-content {
+  background: none;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.darkmode--activated .ui-widget-content {
+  color: var(--text-color);
+}
+
+/*.ui-widget-content {
+  background-color: white;
+  background: none;
+}*/
+
+.verse-selection-menu,
+#module-search-menu,
+#display-options-menu,
+#verse-context-menu {
+  position: fixed;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 5px 5px 5px #A0A0A0;
+  background-color: white;
+  z-index: 1000;
+  display: none;
+}
+
+#display-options-menu {
+  padding-top: 0.5em;
+  width: 41em;
+  max-height: 38em;
+  overflow-y: scroll;
+}
+
+.options-group {
+  float: left;
+  width: 20em;
+}
+
+#bookLoadingModeOption-button {
+  height: fit-content;
+}
+
+/* We do not check for new releases on Android and therefore do not show this option. */
+.Android #checkNewReleasesOption {
+  display: none;
+}
+
+.selection-menu-footer {
+  clear: both;
+  margin: 0;
+  padding: 0.5em;
+  border-top: var(--area-border);
+}
+
+#book-selection-menu {
+  width: 40em;
+  margin-right: 2em;
+}
+
+#book-selection-menu-book-list, #book-selection-menu-chapter-list {
+  padding: 0.5em;
+}
+
+#book-selection-menu-chapter-list {
+  display: none;
+  padding-left: 1em;
+  padding-right: 1em;
+  min-height: 20em;
+  max-height: 38.3em;
+  overflow-y: auto;
+}
+
+.select-chapter #book-selection-menu-chapter-list {
+  display: block;
+}
+
+@media only screen and (min-width: 1000px) {
+  #book-selection-menu {
+    width: 75em;
+  }
+
+  #book-selection-menu-chapter-list {
+    min-height: 20.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+}
+
+#book-selection-menu-chapter-list h2 {
+  padding-top: 0;
+  margin-bottom: 0.5em;
+}
+
+#book-selection-menu-chapter-list #chapter-list-chapters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  max-inline-size: 35em;
+}
+
+#book-selection-menu a.current-chapter {
+  background: var(--highlight-bg);
+  border: var(--highlight-border) !important;
+  border-radius: 4px;
+}
+
+.Android #book-selection-menu-chapter-list #chapter-list-chapters {
+  max-inline-size: 34em;
+}
+
+#book-selection-menu-chapter-list a {
+  width: 2em;
+  height: 2.5em;
+  line-height: 2.5em;
+  flex: 0 0 2.8em;
+  text-align: center;
+  color: black;
+}
+
+@media only screen and (min-width: 1000px) {
+  #book-selection-menu-chapter-list #chapter-list-chapters {
+    max-inline-size: 41em;
+  }
+
+  #book-selection-menu-chapter-list a {
+    flex: 0 0 3.3em;
+  }
+}
+
+#book-selection-menu-book-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.select-chapter #book-selection-menu-book-list {
+  display: none;
+}
+
+.book-list-column {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-auto-flow: column;
+  list-style-type: none;
+  padding: 0.3em 0.8em;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 1em;
+  text-align: center;
+}
+
+.apocryphal-books {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  border-top: 1px solid lightgray;
+  padding-top: 0.8em;
+}
+
+.nt-books {
+  grid-template-rows: repeat(8, 1fr);
+}
+
+.book-1John, .book-2John, .book-3John, .book-Jude, .book-Rev {
+  grid-column-start: 4;
+}
+
+.ot-nt-divider {
+  margin-top: 0.2em;
+  border-top: 1px solid lightgray;
+}
+
+.book-list-column li{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.8em;
+}
+
+/* Formatting for large tablets and desktop */
+@media only screen and (min-width: 1000px) {
+  #book-selection-menu-book-list {
+    flex-direction: row;
+  }
+
+  .ot-books {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(14, 1fr);
+    flex-basis: 53%;
+  }
+
+  .apocryphal-books {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(14, 1fr);
+    border-left: 1px solid lightgray;
+    border-top: none;
+    padding-top: unset;
+    flex-basis: 20%;
+  }
+
+  .nt-books {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    flex-basis: 52%; /* 3 columns of 7 column layout + divider */ 
+    padding-bottom: 2em; /* to align NT and OT rows */
+  }
+
+  .book-1John, .book-2John, .book-3John, .book-Jude, .book-Rev {
+    grid-column-start: auto;
+  }
+
+  .ot-nt-divider {
+    border-left: 1px solid lightgray;
+    border-top: none;
+    margin-top: 0;
+    padding-left: 0.5em;
+  }
+
+  .book-list-column li {
+    line-height: 2em;
+  }
+}
+
+.verse-list-menu .focused-button {
+  border: 1px dashed var(--accent-color);
+}
+
+.fullscreen-button {
+  position: fixed;
+  top: 0.5em;
+  right: 1.2em;
+  width: auto;
+  height: auto;
+  padding: 0.3em 0.4em;
+  font-size: 1em;
+  z-index: 100;
+}
+
+.OSX .fullscreen-button {
+  display: none;
+}
+
+.display-options-button > i {
+  font-size: 1.3em;
+}
+
+.fg-button {
+  cursor: pointer;
+}
+
+.verse-list-menu .fg-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+  height: 2.2em;
+  min-width: 1em;
+  padding: 0 0.8em;
+}
+
+.module-info-button, .copy-commentary-button {
+  display: inline-block;
+  width: 1em;
+  padding: 0.2em;
+  padding-left: 0.7em !important;
+  margin-left: 0.5em;
+  font-size: 0.9em;
+}
+
+.copy-commentary-button {
+  padding-left: 0.5em !important;
+  padding-right: 0.3em !important;
+}
+
+.verse-list-menu .display-options-button,
+.verse-list-menu .copy-button,
+.verse-list-menu .app-info-button,
+.verse-list-menu .export-docx-button,
+.module-info-button,
+.copy-commentary-button {
+  justify-content: center;
+}
+
+.verse-list-menu i.fas+[i18n],
+.verse-list-menu i.fa-caret-down:last-child {
+  margin-left: 0.8em;
+}
+
+.text-size-menu {
+  padding: 0.5em 0.8em;
+}
+
+.text-size-menu .verse-list-menu-line {
+  padding: 0;
+}
+
+.text-size-menu .fg-button {
+  margin-bottom: 0;
+  height: 2rem;
+  width: 1.3rem;
+  font-size: 0.8em;
+  justify-content: center;
+}
+
+.text-size-menu .fg-button:last-child {
+  margin-right: 0;
+}
+
+.verse-list-menu .fg-button.ui-state-active {
+  border-bottom-right-radius: 0;
+}
+
+.verse-list-menu .fg-button.ui-state-active .fa-caret-down:before {
+  content: "\f00d";
+}
+
+.fa-caret-down {
+  width: 8px;
+}
+
+.book-select-label {
+  float: left;
+}
+
+.book-select-button .ui-icon,
+.tag-select-button .ui-icon,
+.module-search-button .ui-icon,
+.display-options-button .ui-icon,
+.copy-button .ui-icon,
+.assign-tag-menu-button .ui-icon {
+  float: right;
+}
+
+.ui-icon-close {
+  background-position: -96px -128px !important;
+}
+
+.book-available a:link,
+.book-available a:hover,
+.book-available a:visited,
+.book-available a:focus
+#book-selection-menu-chapter-list a:link,
+#book-selection-menu-chapter-list a:hover,
+#book-selection-menu-chapter-list a:visited,
+#book-selection-menu-chapter-list a:focus {
+  color: black;
+}
+
+.book-list-column li a:link,
+.book-list-column li.book-available a:visited,
+.book-list-column li.book-available a:hover,
+.book-list-column li.book-available a:focus,
+#book-selection-menu-chapter-list a:link,
+#book-selection-menu-chapter-list a:visited,
+#book-selection-menu-chapter-list a:hover,
+#book-selection-menu-chapter-list a:focus {
+  text-decoration: none;
+  cursor: default;
+  border: 1px solid white;
+  padding: 2px;
+  margin: 1px;
+}
+
+.book-list-column li.book-available a:link,
+.book-list-column li.book-available a:visited,
+#book-selection-menu-chapter-list a:link,
+#book-selection-menu-chapter-list a:visited {
+  cursor: pointer;
+}
+
+.darkmode--activated .book-list-column li a:link,
+.darkmode--activated .book-list-column li.book-available a:visited,
+.darkmode--activated .book-list-column li.book-available a:hover,
+.darkmode--activated .book-list-column li.book-available a:focus,
+.darkmode--activated #book-selection-menu-chapter-list a:link,
+.darkmode--activated #book-selection-menu-chapter-list a:visited,
+.darkmode--activated #book-selection-menu-chapter-list a:hover,
+.darkmode--activated #book-selection-menu-chapter-list a:focus {
+  border: 1px;
+  color: var(--text-color);
+}
+
+li.book-unavailable a:link,
+li.book-unavailable a:hover,
+li.book-unavailable a:visited,
+li.book-unavailable a:focus,
+.darkmode--activated li.book-unavailable a:link,
+.darkmode--activated li.book-unavailable a:hover,
+.darkmode--activated li.book-unavailable a:visited,
+.darkmode--activated li.book-unavailable a:focus {
+  color: grey;
+}
+
+.apocryphal-books li.book-unavailable {
+  display: none;
+}
+
+.book-list-column li.book-available a:hover,
+.book-list-column li.book-available a:focus,
+#book-selection-menu-chapter-list a:hover,
+#book-selection-menu-chapter-list a:focus {
+  /*text-decoration: underline;*/
+  border: var(--highlight-border);
+  margin: 1px;
+  padding: 2px;
+  border-radius: 4px;
+  background: var(--highlight-bg);
+}
+
+.darkmode--activated .book-list-column li.book-available a:hover,
+.darkmode--activated .book-list-column li.book-available a:focus,
+.darkmode--activated #book-selection-menu-chapter-list a:hover,
+.darkmode--activated #book-selection-menu-chapter-list a:focus {
+  background: none;
+  background-color: #00396a;
+}
+
+.book-list-column li.book-selected a:link,
+.book-list-column li.book-selected a:visited,
+.book-list-column li.book-selected a:focus {
+  border: var(--highlight-border);
+  margin: 1px;
+  border-radius: 4px;
+  padding: 2px;
+  background: var(--highlight-bg);
+}
+
+.darkmode--activated .book-list-column li.book-selected a:link,
+.darkmode--activated .book-list-column li.book-selected a:visited,
+.darkmode--activated .book-list-column li.book-selected a:focus {
+  background: none;
+  background-color: #00396a;
+  border: 1px solid #00396a;
+}
+
+.verse-list-loading-indicator,
+.loading-indicator {
+  display: none;
+  width: 300px;
+  height: 30px;
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#startup-loading-indicator {
+  font-size: 130%;
+  position: absolute;
+  height: 200px;
+  margin: -100px 0 0 -100px;
+  top: 50%;
+  left: 50%;
+}
+
+#startup-loading-indicator .loader {
+  display: block;
+}
+
+#startup-loading-indicator.incompatible-windows,
+#startup-loading-indicator.permissions-issue {
+  position: unset;
+  margin: 50px;
+}
+
+#verse-list-popup-loading-indicator,
+#compare-translations-loading-indicator,
+#commentary-panel-loading-indicator {
+  display: none;
+  /* width: 300px; */
+  height: 30px;
+  margin-top: 3em;
+  margin-left: 0.5em;
+}
+
+.loading-indicator-text,
+#loading-subtitle {
+  font: caption;
+  font-size: 1em;
+  font-weight: bold;
+  color: #808080;
+}
+
+#startup-loading-indicator.incompatible-windows .loading-indicator-text {
+  color: black;
+  font-weight: normal;
+}
+
+.verse-list-header,
+.verse-statistics-chart-container {
+  display: none;
+  margin-left: 0.2em;
+  margin-top: 0.5em;
+}
+
+.reference-verse-list-header {
+  margin-left: 0.2em;
+}
+
+.verse-statistics-chart-container {
+  width: 95%;
+  height: 12em;
+}
+
+#show-translation-settings-button,
+#show-dict-settings-button,
+#show-commentary-settings-button,
+#show-typeface-settings-button,
+#setup-db-sync-button,
+#show-module-update-button {
+  padding: 0.5em;
+  display: block;
+  width: 100%;
+}
+
+.options-header {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.8em;
+}
+
+.select-all-verses-button,
+#start-module-search-button {
+  margin-left: 0.8em;
+  height: 2.2em;
+}
+
+.assign-last-tag-button {
+  margin-left: 0;
+  margin-right: 0.8em;
+}
+
+/* On Android we disable the possibility to export tagged verses to a document */
+.Android .export-docx-button {
+  display: none;
+}
+
+#cancel-module-installation-button, .cancel-module-search-button {
+  height: 2.2em;
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+#add-tab-button {
+  margin-top: 0.4em;
+  margin-left: 0.5em;
+  margin-right: 0.2em;
+  padding: 4px 6px;
+  float: left;
+}
+
+.switch-label,
+.tag-select-label,
+.module-search-label {
+  margin: 0.2em;
+  margin-left: 0.2em;
+}
+
+.tag-data {
+  display: none;
+}
+
+.temporary-help {
+  display: none;
+  background-color: var(--background-color);
+  z-index: 999;
+  position: fixed;
+}
+
+.temporary-help p {
+  margin: 0.1em;
+}
+
+.reference-verse {
+  display: none;
+}
+
+.state-normal {
+  opacity: 0.6;
+  border: 1px solid #A0A0A0;
+  color: black;
+  border-radius: 4px;
+}
+
+.state-disabled {
+  opacity: 0.2;
+}
+
+.state-highlighted {
+  opacity: 1.0;
+  border: 1px solid black;
+}
+
+.verse-list-book.verse-list-with-section-titles .sword-section-title,
+.tag-browser-verselist-book-header,
+.reference-header {
+  clear: both;
+  display: block;
+  font-weight: bold;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-left: 0.7em;
+  margin-right: 0.5em;
+  font-size: 1.2em;
+}
+
+.verse-list-book.verse-list-without-chapter-titles .sword-chapter-title {
+  display: none;
+}
+
+.chapter-header {
+  display: none;
+}
+
+.book-intro {
+  display: none;
+  font-style: italic;
+  line-height: 1.5em;
+  margin: 1em;
+}
+
+.verse-list-with-section-titles .chapter-header {
+  display: block;
+}
+
+.verse-list-with-notes .verse-notes {
+  display: block;
+}
+
+.verse-list-with-notes .verse-content {
+  margin-left: 0;
+  margin-right: 0.5em;
+}
+
+.ui-selectable-helper {
+  opacity: 0.2;
+  background-color: black;
+}
+
+.darkmode--activated .ui-selectable-helper {
+  background-color: white;
+}
+
+.clickable-checkbox-label {
+  cursor: default;
+}
+
+.selected-verses {
+  display: inline-block;
+}
+
+.selected-verses a:link,
+.selected-verses a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+.selected-verses a:hover,
+.selected-verses a:active {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+.bible-select-block {
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  user-select: none;
+  min-width: 20em;
+}
+
+.bible-select-block select {
+  width: 19em;
+  display: none;
+}
+
+.current-tab-title-label {
+  display: none;
+}
+
+.selection-box {
+  display: inline-block;
+  margin: 0.1em 0.1em 0.3em 0.5em;
+  width: 18em;
+}
+
+#tag-selection-menu {
+  padding: 1em;
+  padding-top: 0;
+  width: 26em;
+}
+
+#tag-selection-menu button {
+  padding: 0.3em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+}
+
+.darkmode--activated #tag-selection-menu {
+  color: var(--text-color);
+}
+
+#module-search-menu {
+  padding: 1em;
+}
+
+#start-module-search-button {
+  margin-left: 0.5em;
+}
+
+.darkmode--activated #module-search-menu,
+.darkmode--activated .verse-selection-menu,
+.darkmode--activated #display-options-menu,
+.darkmode--activated #verse-context-menu {
+  background: #000000 url(jquery-ui/dark-hive/images/ui-bg_loop_25_000000_21x21.png) 50% 50% repeat;
+  color: var(--text-color);
+}
+
+.darkmode--activated .verse-selection-menu span {
+  color: var(--text-color);
+}
+
+#tag-selection-taglist-global,
+#tag-selection-taglist-overlay {
+  margin-bottom: 1em;
+  padding-top: 0.5em;
+  border-top: var(--area-border);
+  border-bottom: var(--area-border);
+  height: 400px;
+  overflow-y: scroll;
+}
+
+#tag-selection-taglist-overlay {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#tag-selection-filter-loading-indicator {
+  position: relative;
+  top: -4em;
+  right: -33em;
+}
+
+#tag-selection-filter-loading-indicator .loader {
+  display: block;
+  visibility: hidden;
+}
+
+#new-standard-tag-title-input,
+#rename-tag-title-input,
+#rename-tag-group-title-input,
+.tab-search-input,
+.tab-search-type,
+#search-type,
+#search-scope {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+
+#tag-selection-filter-input {
+  width: 20em;
+}
+
+#module-search-input {
+  width: 15em;
+}
+
+
+/* Large tablets and desktop */
+
+@media only screen and (min-width: 1000px) {
+  #module-search-input {
+    width: 21em;
+  }
+  #module-search-menu {
+    width: 30em;
+  }
+}
+
+.tag-browser-tag-id,
+.last-used-timestamp {
+  display: none;
+}
+
+.tag-browser-tag-cb {
+  float: left;
+  margin-top: 0.1em;
+  margin-right: 0.5em;
+}
+
+.Android .tag-browser-tag-cb {
+  margin-top: inherit;
+}
+
+.Android #tag-selection-recently-used-checkbox {
+  float: left;
+  margin-right: 0.5em;
+}
+
+.tag-browser-tag {
+  clear: both;
+  margin-bottom: 0.5em;
+  content-visibility: auto;
+  contain-intrinsic-size: 1.2em;
+}
+
+.Android .tag-browser-tag {
+  margin-bottom: 1em;
+}
+
+.tag-browser-tag-title {
+  /*float: left;*/
+  margin-left: 1.5em;
+  cursor: pointer;
+}
+
+.tag-browser-tag-assignment-count {
+  /*float: left;*/
+  margin-left: 0.2em;
+}
+
+#verse-list-popup {
+  padding-right: 0;
+}
+
+#verse-list-popup .tag-browser-verselist-book-header {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.Windows #only-currentbook-tagged-verses,
+.Linux #only-currentbook-tagged-verses {
+  position: relative;
+  top: 0.2em;
+}
+
+#only-currentbook-tagged-verses-label,
+#current-book-tagged-verses-count {
+  font-weight: normal;
+}
+
+.tag-browser-verselist-passage {
+  clear: both;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+}
+
+.tag-browser-verselist-passage-header {
+  margin-bottom: 0.2em;
+}
+
+.tab-search {
+  grid-area: tab-search;
+  padding: 0.5em;
+  border-bottom-right-radius: var(--border-radius);
+  border: 1px solid lightGrey;
+  /* border-left: none; */
+  border-top: none;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  flex-flow: row wrap;
+}
+
+.verse-list-frame.no-chapter-nav + .tab-search {
+  border-bottom-left-radius: 4px;
+}
+
+.darkmode--activated .tab-search {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.tab-search-form, .tab-search-options {
+  margin: 0.3em;
+}
+
+.tab-search-options {
+  margin-left: 2em;
+}
+
+.tab-search-input {
+  float: left;
+  background-color: white;
+  width: 150px;
+  margin-right: 1em;
+}
+
+.darkmode--activated input,
+.darkmode--activated .tab-search-type,
+.darkmode--activated .tab-search-is-case-sensitive {
+  background-color: var(--text-color);
+}
+
+.tab-search-input:focus {
+  border: 1px solid #aed0ea;
+  box-shadow: 0 0 10px #aed0ea;
+}
+
+.darkmode--activated .tab-search-input:focus {
+  border: 1px solid #0b93d5;
+  box-shadow: 0 0 10px #0b93d5;
+}
+
+.tab-search-nav {
+  margin-right: 0.5em;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.5em;
+  line-height: 0.8em;
+}
+
+.tab-search-previous {
+  margin-right: 1em;
+}
+
+.tab-search-occurances {
+  float: left;
+  margin-left: 0.5em;
+  margin-right: 2em;
+  width: 2em;
+}
+
+body:not(.darkmode--activated) .tab-search-occurances {
+  border: 1px solid white;
+  color: black;
+}
+
+.tab-search-results {
+  margin-bottom: 1em;
+}
+
+.search-hl {
+  background-color: yellow;
+}
+
+.darkmode--activated .search-hl {
+  background-color: darkgreen;
+}
+
+.current-hl {
+  background-color: orange;
+}
+
+.darkmode--activated .current-hl {
+  background-color: forestgreen;
+}
+
+
+tr.compare-translation-row:nth-child(odd) {
+  background-color: var(--background-color-darker);
+}
+
+.compare-translation-row td.compare-translation-row {
+  border-bottom: 1px dashed gray;
+}
+
+.compare-translation-row .verse-reference-td {
+  width: 4em;
+  padding: 0.5em;
+  margin-left: unset !important;
+}
+
+.compare-translation-row .verse-content-td {
+  padding: 0.5em;
+}
+
+/* This is a workaround for markup issues, see https://github.com/ezra-bible-app/ezra-bible-app/issues/734 */
+.compare-translation-row .verse-content-td .sword-milestone,
+.compare-translation-row .verse-content-td .sword-quote {
+  display: unset !important;
+}
+
+#strongs-box {
+  display: none;
+  text-align: center;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: var(--highlight-bg-color);
+  z-index: 100;
+  /*opacity: 0.8;*/
+  user-select: none;
+  position: fixed;
+  color: var(--text-color);
+}
+
+.progress-bar {
+  margin-top: 1em;
+  height: 2em;
+  clear: both;
+}
+
+.progress-bar div {
+  height: 95%;
+}
+
+.ui-progressbar {
+  position: relative;
+}
+
+.progress-label {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #fff;
+  transform: translateX(-50%);
+  width: fit-content;
+}
+
+.darkmode--activated .progress-label {
+  text-shadow: none;
+}
+
+.search-progress-bar {
+  display: none
+}
+
+.load-book-results {
+  margin-left: 1em;
+}
+
+.Windows,
+.Windows button,
+.Windows select,
+.Windows .verse-list-content,
+.Windows .loading-indicator-text,
+.Windows .loading-subtitle,
+.Windows div.CodeMirror {
+  font-family: "Segoe UI", sans-serif;
+}
+
+.Windows div.CodeMirror {
+  font-size: 1em;
+}
+
+.Linux,
+.Linux button,
+.Linux select,
+.Linux .verse-list-content,
+.Linux .loading-indicator-text,
+.Linux .loading-subtitle,
+.Linux div.CodeMirror {
+  font-family: "Liberation Sans", Ubuntu, sans-serif;
+}
+
+.Linux div.CodeMirror {
+  font-size: 1em;
+}
+
+.Android,
+.Android button,
+.Android select,
+.Android .verse-list-content,
+.Android .loading-indicator-text,
+.Android .loading-subtitle,
+.Android div.CodeMirror {
+  font-family: Roboto, sans-serif;
+}
+
+.OSX,
+.OSX button,
+.OSX select,
+.OSX .verse-list-content,
+.OSX .loading-indicator-text,
+.OSX .loading-subtitle,
+.OSX div.CodeMirror {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
+}
+
+.ui-selectmenu-menu-dropdown {
+  box-shadow: 5px 5px 5px #A0A0A0;
+}
+
+.scrollable::-webkit-scrollbar,
+.ui-selectmenu-menu ul::-webkit-scrollbar,
+.ui-widget-content::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+  border-width: 1px;
+  border-radius: var(--border-radius);
+}
+
+.scrollable::-webkit-scrollbar-track,
+.ui-selectmenu-menu ul::-webkit-scrollbar-track,
+.ui-widget-content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: var(--border-radius);
+}
+
+.scrollable::-webkit-scrollbar-thumb,
+.ui-selectmenu-menu ul::-webkit-scrollbar-thumb,
+.ui-widget-content::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border: 1px solid slategrey;
+  border-radius: var(--border-radius);
+}
+
+.android-dialog-large-fontsize .ui-dialog-titlebar {
+  font-size: 120%;
+}
+
+#permissions-box-content,
+#general-info-box-content {
+  font-size: 120%;
+}
+
+.dialog-without-close-button .ui-dialog-titlebar-close {
+  display: none;
+}
+
+.info-tabs {
+  height: calc(100% - 5em);
+  overflow-y: scroll;
+}
+
+.info-tab-section-title {
+  padding-top: 1em;
+  width: 24em;
+}
+
+#info-table-shortcuts{
+  width: 100%;
+  padding: 10px;
+}
+
+#info-table-shortcuts th{
+  text-align:left;
+}
+
+code {
+  padding: .2em .4em;
+  margin: 0;
+  font-size: 90%;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  background-color: slategrey;
+  color: lightblue;
+  border-radius: var(--border-radius);
+}
+
+.text-loader {
+  position: fixed;
+  right: 0;
+  margin-right: 1.5em;
+}
+
+#mobile-loader {
+  display: none;
+}
+
+.darkmode--activated p,
+.darkmode--activated .verse-list-container {
+  color: var(--text-color);
+}
+
+.darkmode--activated .logo {
+  mix-blend-mode: difference;
+}
+
+.darkmode--activated section {
+  background: none;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.darkmode--activated .assistant>.steps .disabled a,
+.darkmode--activated .assistant>.steps .disabled a:hover,
+.darkmode--activated .assistant>.steps .disabled a:active {
+  background: none;
+  background-color: gray;
+}
+
+#dictionary-panel-content hr {
+  border: 1px solid var(--border-color);
+}
+
+/* SWORD text related */
+
+/* Sword markup disabled by default */
+.sword-markup {
+  display: none;
+}
+
+#bible-font-sample-text .sword-markup {
+  display: unset !important;
+}
+
+#bible-font-sample-text .sword-section-title {
+  display: none !important;
+}
+
+#bible-font-sample-text .sword-note {
+  display: none !important;
+}
+
+.sword-quote-jesus {
+  display: unset;
+}
+
+.verse-list-with-red-letters .sword-quote-jesus {
+  color: var(--text-color-red);
+}
+
+.darkmode--activated .verse-list-with-red-letters .sword-quote-jesus {
+  color: var(--text-color-red-darkmode);
+}
+
+.verse-list.verse-list-with-paragraphs .sword-paragraph-end {
+  margin-bottom: 4em;
+  display: block !important;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+transchange {
+  font-style: italic;
+}
+
+.sword-note,
+.sword-note reference,
+.sword-note hi {
+  display: none;
+}
+
+.sword-xref-marker,
+.sword-note-marker {
+  display: inline-block;
+  padding-right: 0.2em;
+  font-weight: bold;
+  position: relative;
+  top: -0.3em;
+}
+
+.sword-note-marker {
+  color: var(--accent-color);
+}
+
+.sword-xref-marker {
+  cursor: pointer;
+}
+
+.verse-list-without-xrefs .sword-xref-marker {
+  display: none;
+}
+
+.verse-list-without-footnotes .sword-note-marker {
+  display: none;
+}
+
+.verse-list-without-strongs sup.strongs {
+  display: none;
+}
+
+.strongs-hl {
+  background-color: var(--highlight-bg-color);
+}
+
+.darkmode--activated .strongs-hl {
+  background-color: dimgray;
+}
+
+.strongs-current-verse w {
+  color: blue;
+}
+
+.darkmode--activated .strongs-current-verse w {
+  color: lightgreen;
+}
+
+/* This element only occurs in the NA28 sword module */
+s {
+  text-decoration: none;
+}
+
+sup.strongs {
+  margin-left: 0.2em;
+  font-size: 70%;
+  display: inline-block;
+}
